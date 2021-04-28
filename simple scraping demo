@@ -1,0 +1,13 @@
+#finding the melting point of a given compound
+#cannot take more than one word now, going to make it so that multiple words can be read and the space deleted into pub med's search
+
+@bot.command(pass_context=True)
+  async def mp(ctx, bond):
+    link = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/" + bond + "/property/MolecularFormula/JSON"
+    rep = requests.get(link)
+    userInput = rep.json()["PropertyTable"]["Properties"][0]["CID"]
+    neob = "https://pubchem.ncbi.nlm.nih.gov/rest/pug_view/data/compound/" + str(userInput) + "/JSON/?heading=Melting+Point"
+    r = re.search(r'"String": "(.*?) °C"', requests.get(neob).text).group(1)
+    userc = bond + " has a melting point of: " + r + " degrees Celsius."
+    embed = discord.Embed(title=title, description="[www.roblox.com](https://roblox.com)" + "\n\n" + userc, color=0xff9900)
+    await ctx.send(embed=embed)
