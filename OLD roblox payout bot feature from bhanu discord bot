@@ -1,0 +1,13 @@
+#this does not work anymore (I am going to make a new one, ROBLOX updated)
+#also not a great way of geting csrf token I know
+
+for i in groupid:
+      time.sleep(10)
+      h = session.get(f"https://economy.roblox.com/v1/groups/{i}/currency").json()
+      he = h["robux"]
+      t = session.get(f"https://economy.roblox.com/v1/groups/{i}/revenue/summary/day").json()
+      te = t["pendingRobux"]
+      crsf_token = re.search(r"<script>Roblox.XsrfToken.setToken\('(.*?)'\);</script>", session.get('https://www.roblox.com/games/?SortFilter=default&TimeFilter=0').text).group(1)
+      header = {"Accept": "application/json, text/plain, */*", "Content-Type": "application/json;charset=UTF-8", "X-CSRF-TOKEN": crsf_token}
+      data = {"PayoutType":"Percentage","Recipients":[{"recipientId":id,"recipientType":"User","amount":100}]}
+      v = session.post(f"https://groups.roblox.com/v1/groups/{i}/payouts", headers=header, data=json.dumps(data))
