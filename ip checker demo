@@ -1,0 +1,26 @@
+#ip checker feature of old bhanu bot, of course more work can be done and it can be made way better
+
+  @bot.command(pass_context=True)
+  async def ip(ctx, imp):
+    global descriptio, col
+    link = 'https://ipwhois.app/json/' + imp
+    print(imp)
+    re = requests.get(link)
+    p = re.json()
+    ip = p['ip']
+    typed = p['type']
+    continent = p['continent']
+    country = p['country']
+    country_code = str(p['country_code']).lower()
+    flag = ":flag_"+country_code+":"
+    region = p['region']
+    city = str(p['city'])
+    latitude = str(p['latitude'])
+    longitude = str(p['longitude'])
+
+    t1 = "\n\nIP: "+ip+"\nType: "+typed+"\n\nLocation: "+flag+"\n"+city+", "+region+"\n"+country+" "+continent+"\n"+latitude+", "+longitude
+    
+    col = 0x3498DB
+
+    embed = discord.Embed(title=title, description=t1, color=col)
+    await ctx.send(embed=embed)
