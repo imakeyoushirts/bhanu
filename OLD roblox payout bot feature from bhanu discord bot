@@ -1,5 +1,5 @@
-#this does not work anymore (I am going to make a new one, ROBLOX updated)
-#also not a great way of geting csrf token I know
+this does not work anymore (I am going to make a new one, ROBLOX updated)
+also not a great way of geting csrf token I know
 
 for i in groupid:
       time.sleep(10)
