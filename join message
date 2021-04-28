@@ -1,0 +1,15 @@
+@bot.event
+  async def on_member_join(member):
+    channel = bot.get_channel(number)
+    guild = member.guild
+    p = str(member)
+    welcome = [ 'welkomma','i bisimila', 'akwaba', 'swagata', 'welcome', 'dalal ak diam', 'hush kelibsiz', 'bienvenido', 'bem-vindo', 'benvenuto']
+    emojicon = [':thumbsup:', ':smile:', ':clap:', ':fireworks:', ':partying_face:', ':champagne:']
+    slogans = ['Enjoy the cult!', '***BHANU On!***', 'Turn around and get shot!', 'Hasbab likes to steal!', 'Baranathan is being sneaky again!', 'BHANU is in me!', '***BHANU On!***', '***BHANU On!***', "chip chip cheerio!", "**RIP** Juice Wrld"]
+    t = random.choice(welcome)
+    juicewrld = random.choice(emojicon)
+    g = random.choice(slogans)
+    newUserMessage = t + " **" + p +"**!\n" + g + " " + juicewrld.format(member.mention, guild.name)
+    print("New user joined")
+    await channel.send(newUserMessage) 
+    await member.send(newUserMessage)
